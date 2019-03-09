@@ -34,7 +34,7 @@ public class FilesController {
 		}
 	}
 
-	@RequestMapping(value = "/files/{documentId:.+}", produces = { "application/pdf" })
+	@RequestMapping(value = "/files/{documentId}", produces = { "application/pdf" })
 	public ResponseEntity<InputStreamResource> getDocument(@PathVariable String repositoryId,
 			@PathVariable String documentId) throws IOException {
 		DocumentsRepository repository = rootToRepository.get(repositoryId);

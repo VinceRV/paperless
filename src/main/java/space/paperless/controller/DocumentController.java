@@ -70,7 +70,7 @@ public class DocumentController {
 		}
 	}
 
-	@RequestMapping(value = "/documents/{documentId:.+}")
+	@RequestMapping(value = "/documents/{documentId}")
 	public ResponseEntity<Resource<Document>> getDocument(@PathVariable String repositoryId,
 			@PathVariable String documentId) throws IOException, DecoderException {
 		DocumentsRepository repository = rootToRepository.get(repositoryId);
@@ -100,7 +100,7 @@ public class DocumentController {
 		return resource;
 	}
 
-	@RequestMapping(value = "/documents/{documentId:.+}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/documents/{documentId}", method = RequestMethod.PUT)
 	public ResponseEntity<Resource<Document>> updateDocument(@PathVariable String repositoryId,
 			@PathVariable String documentId, @RequestBody Document document,
 			@RequestParam(defaultValue = "false") boolean archive) throws IOException, DecoderException {
