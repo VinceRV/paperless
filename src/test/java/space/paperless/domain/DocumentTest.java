@@ -14,7 +14,7 @@ import org.junit.Test;
 public class DocumentTest {
 
 	@Test
-	public void create_archivePatternFileName_assignmentsAreCorrect() throws Exception {
+	public void create_archivePatternFileName_assignmentsAreCorrect() {
 		// given
 		String documentId = "201610whatever_document1.pdf";
 		String description = "";
@@ -30,7 +30,7 @@ public class DocumentTest {
 	}
 
 	@Test
-	public void create_unknownPatternFileName_assignmentsAreCorrect() throws Exception {
+	public void create_unknownPatternFileName_assignmentsAreCorrect() {
 		// given
 		String documentId = "whatever.pdf";
 		String description = "";
@@ -48,7 +48,7 @@ public class DocumentTest {
 	}
 
 	@Test
-	public void create_descriptionIsParsedCorrectly() throws Exception {
+	public void create_descriptionIsParsedCorrectly() {
 		// given
 		String documentId = "201610_document1.pdf";
 		String description = "type={typeIsRead},complement={complementIsRead},notes={notesAreRead},thirdparty={thirdPartyIsRead},reference={reference1},reference={reference2}";
@@ -75,7 +75,7 @@ public class DocumentTest {
 	}
 
 	@Test
-	public void create_oldDescriptionIsParsedCorrectly() throws Exception {
+	public void create_oldDescriptionIsParsedCorrectly() {
 		// given
 		String documentId = "201610_document1.pdf";
 		String description = "blabla::blabla::thirdparty:Public/City/Youth;type:Attestation/Fee;reference:Person/One;reference:Person/Two::";

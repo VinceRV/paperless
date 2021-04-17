@@ -1,8 +1,8 @@
 package space.paperless.domain.impl;
 
-import static org.hamcrest.CoreMatchers.hasItems;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
+import org.junit.After;
+import org.junit.Test;
+import space.paperless.domain.DescriptionType;
 
 import java.io.File;
 import java.io.IOException;
@@ -12,11 +12,9 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import org.junit.After;
-import org.junit.Test;
-
-import space.paperless.domain.DescriptionType;
-import space.paperless.domain.impl.FlatFileIndex;
+import static org.hamcrest.CoreMatchers.hasItems;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 
 /**
  * Created by vince on 25.01.2017.
@@ -28,7 +26,7 @@ public class FlatFileIndexTest {
 	private FlatFileIndex index;
 
 	@Test
-	public void create_assignmentsAreCorrect() throws Exception {
+	public void create_assignmentsAreCorrect() {
 		// when
 		index = new FlatFileIndex(DescriptionType.REFERENCE, ROOT);
 
@@ -37,7 +35,7 @@ public class FlatFileIndexTest {
 	}
 
 	@Test
-	public void update_addTwoRootElement_TwoRootElementsAreAdded() throws Exception {
+	public void update_addTwoRootElement_TwoRootElementsAreAdded() {
 		// given
 		index = new FlatFileIndex(DescriptionType.REFERENCE, ROOT);
 		Set<String> ids = new HashSet<>();
@@ -56,7 +54,7 @@ public class FlatFileIndexTest {
 	}
 
 	@Test
-	public void update_addComplexElement_complexElementIsAdded() throws Exception {
+	public void update_addComplexElement_complexElementIsAdded() {
 		// given
 		index = new FlatFileIndex(DescriptionType.REFERENCE, ROOT);
 		Set<String> ids = new HashSet<>();
@@ -75,7 +73,7 @@ public class FlatFileIndexTest {
 	}
 
 	@Test
-	public void update_addTwoComplexElement_twoComplexElementsAreAdded() throws Exception {
+	public void update_addTwoComplexElement_twoComplexElementsAreAdded() {
 		// given
 		index = new FlatFileIndex(DescriptionType.REFERENCE, ROOT);
 		Set<String> ids = new HashSet<>();
@@ -97,7 +95,7 @@ public class FlatFileIndexTest {
 	}
 
 	@Test
-	public void update_addTwice_indexFileIsTruncated() throws Exception {
+	public void update_addTwice_indexFileIsTruncated() {
 		// given
 		index = new FlatFileIndex(DescriptionType.REFERENCE, ROOT);
 		String element1 = "element1";

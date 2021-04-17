@@ -1,8 +1,8 @@
 package space.paperless.scanner.naps2;
 
 public class CommandResult {
-    private int exitCode;
-    private String output;
+    private final int exitCode;
+    private final String output;
 
     public CommandResult(int exitCode, String output) {
         super();

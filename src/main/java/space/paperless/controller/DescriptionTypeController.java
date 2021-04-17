@@ -17,8 +17,11 @@ import space.paperless.domain.DescriptionType;
 @ExposesResourceFor(DescriptionType.class)
 public class DescriptionTypeController {
 
-	@Autowired
-	private EntityLinks entityLinks;
+	private final EntityLinks entityLinks;
+
+	public DescriptionTypeController(EntityLinks entityLinks) {
+		this.entityLinks = entityLinks;
+	}
 
 	@RequestMapping("/descriptionTypes")
 	public List<Resource<DescriptionType>> descriptionFields() {

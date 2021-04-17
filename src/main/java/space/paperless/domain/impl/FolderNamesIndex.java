@@ -74,10 +74,7 @@ public class FolderNamesIndex extends DescriptionIndex {
 			return false;
 		FolderNamesIndex other = (FolderNamesIndex) obj;
 		if (filesRepository == null) {
-			if (other.filesRepository != null)
-				return false;
-		} else if (!filesRepository.equals(other.filesRepository))
-			return false;
-		return true;
+			return other.filesRepository == null;
+		} else return filesRepository.equals(other.filesRepository);
 	}
 }

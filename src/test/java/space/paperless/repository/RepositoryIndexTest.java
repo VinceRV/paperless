@@ -1,13 +1,5 @@
 package space.paperless.repository;
 
-import static org.hamcrest.CoreMatchers.hasItem;
-import static org.hamcrest.CoreMatchers.not;
-import static org.junit.Assert.assertThat;
-
-import java.io.File;
-import java.util.Arrays;
-import java.util.List;
-
 import org.apache.commons.io.FileUtils;
 import org.junit.After;
 import org.junit.Before;
@@ -20,9 +12,17 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
-
 import space.paperless.domain.Document;
 import space.paperless.domain.RepositoryId;
+
+import java.io.File;
+import java.util.Collections;
+import java.util.List;
+import java.util.Objects;
+
+import static org.hamcrest.CoreMatchers.hasItem;
+import static org.hamcrest.CoreMatchers.not;
+import static org.junit.Assert.assertThat;
 
 /**
  * Created by vince on 22.01.2017.
@@ -45,7 +45,7 @@ public class RepositoryIndexTest {
 	private File incomingRoot;
 
 	@Before
-	public void setUp() throws Exception {
+	public void setUp() {
 		if (!indexRoot.exists()) {
 			indexRoot.mkdir();
 		}
@@ -107,7 +107,7 @@ public class RepositoryIndexTest {
 		String documentId = IdUtils.id(RepositoryId.INCOMING.getName(), "20170713234803847_Battle_of_the_Planets.pdf");
 		Document document = new Document(documentId,
 				"type={nonEmpty},complement={myComplement},notes={myNotes},thirdparty={myThirdParty},reference={myReference1},reference={myReference2}");
-		File documentFile = new File(incomingRoot, IdUtils.idToPath(RepositoryId.INCOMING.getName(), documentId));
+		File documentFile = new File(incomingRoot, Objects.requireNonNull(IdUtils.idToPath(RepositoryId.INCOMING.getName(), documentId)));
 
 		// when
 		index.updateIndex(documentId, documentFile, document);
@@ -118,7 +118,7 @@ public class RepositoryIndexTest {
 
 	private MultiValueMap<String, String> toFilter(String field, String value) {
 		MultiValueMap<String, String> filters = new LinkedMultiValueMap<>();
-		List<String> type = Arrays.asList(new String[] { value });
+		List<String> type = Collections.singletonList(value);
 
 		filters.put(field, type);
 

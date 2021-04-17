@@ -124,12 +124,7 @@ public class Document implements Comparable<Document> {
 	}
 
 	public void addDescriptionValue(DescriptionType descriptionType, String value) {
-		Set<String> values = descriptions.get(descriptionType.getName());
-
-		if (values == null) {
-			values = new LinkedHashSet<>();
-			descriptions.put(descriptionType.getName(), values);
-		}
+		Set<String> values = descriptions.computeIfAbsent(descriptionType.getName(), k -> new LinkedHashSet<>());
 
 		values.add(value);
 	}
@@ -208,11 +203,8 @@ public class Document implements Comparable<Document> {
 			return false;
 		Document other = (Document) obj;
 		if (documentId == null) {
-			if (other.documentId != null)
-				return false;
-		} else if (!documentId.equals(other.documentId))
-			return false;
-		return true;
+			return other.documentId == null;
+		} else return documentId.equals(other.documentId);
 	}
 
 	@Override

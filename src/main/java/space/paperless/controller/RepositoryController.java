@@ -38,10 +38,6 @@ public class RepositoryController {
 			throws IOException {
 		RepositoryId repositoryId = RepositoryId.findByName(repositoryIdParam);
 
-		if (repositoryId == null) {
-			return ResponseEntity.notFound().build();
-		}
-
 		return new ResponseEntity<>(getRepositoryIdResource(repositoryId), HttpStatus.OK);
 	}
 

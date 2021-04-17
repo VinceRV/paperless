@@ -57,10 +57,7 @@ public class IndexResource extends ResourceSupport {
 		if (descriptionType != other.descriptionType)
 			return false;
 		if (elements == null) {
-			if (other.elements != null)
-				return false;
-		} else if (!elements.equals(other.elements))
-			return false;
-		return true;
+			return other.elements == null;
+		} else return elements.equals(other.elements);
 	}
 }

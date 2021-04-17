@@ -24,9 +24,8 @@ public class PDFMetadataPDFBox implements PDFMetadata {
 
 	@Override
 	public String readDescription(File fromFile) throws IOException {
-		PDDocument document = PDDocument.load(fromFile);
 
-		try {
+		try (PDDocument document = PDDocument.load(fromFile)) {
 			PDDocumentInformation pdd = document.getDocumentInformation();
 			String parentFolderName = fromFile.getParentFile().getAbsolutePath().replace('\\', '/');
 			String fileName = fromFile.getName();
@@ -38,8 +37,6 @@ public class PDFMetadataPDFBox implements PDFMetadata {
 			LOG.debug("Description of {} is {}", fromFile, description);
 
 			return description;
-		} finally {
-			document.close();
 		}
 	}
 
@@ -54,20 +51,17 @@ public class PDFMetadataPDFBox implements PDFMetadata {
 
 	@Override
 	public void writeDescription(File toFile, String description) throws IOException {
-		PDDocument document = PDDocument.load(toFile);
 
-		try {
+		try (PDDocument document = PDDocument.load(toFile)) {
 			PDDocumentInformation pdd = document.getDocumentInformation();
 
 			pdd.setKeywords(description);
 			document.save(toFile);
-		} finally {
-			document.close();
 		}
 	}
 
 	private class PDFFilesVisitor extends SimpleFileVisitor<Path> {
-		private LinkedList<String> descriptions = new LinkedList<>();
+		private final LinkedList<String> descriptions = new LinkedList<>();
 
 		@Override
 		public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
@@ -76,7 +70,7 @@ public class PDFMetadataPDFBox implements PDFMetadata {
 		}
 
 		public String[] getDescriptions() {
-			return descriptions.toArray(new String[descriptions.size()]);
+			return descriptions.toArray(new String[0]);
 		}
 	}
 }

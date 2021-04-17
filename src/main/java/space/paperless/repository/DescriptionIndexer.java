@@ -50,12 +50,7 @@ public class DescriptionIndexer {
 
 		for (Document document : documents) {
 			for (Entry<String, Set<String>> entry : document.getDescriptions().entrySet()) {
-				Set<String> allValues = allDescriptions.get(entry.getKey());
-
-				if (allValues == null) {
-					allValues = new HashSet<>();
-					allDescriptions.put(entry.getKey(), allValues);
-				}
+				Set<String> allValues = allDescriptions.computeIfAbsent(entry.getKey(), k -> new HashSet<>());
 
 				allValues.addAll(entry.getValue());
 			}

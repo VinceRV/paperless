@@ -33,7 +33,6 @@ import space.paperless.domain.RepositoryId;
 public class DocumentsRepositoryTest {
 
 	public static final String DOCUMENT1_PDF = "201410_Astro_Boy.pdf";
-	public static final String DOCUMENT2_PDF = "201501_Captain_Future.pdf";
 	private static final String DOCUMENT3_PDF = "201410_Astro_Boy_source.pdf";
 	private static final String DOCUMENT4_PDF = "201410_Astro_Boy_destination.pdf";
 

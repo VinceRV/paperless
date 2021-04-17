@@ -6,9 +6,9 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 public enum RepositoryId {
 	ARCHIVE("archive"), INCOMING("incoming");
 
-	private String name;
+	private final String name;
 
-	private RepositoryId(String name) {
+	RepositoryId(String name) {
 		this.name = name;
 	}
 

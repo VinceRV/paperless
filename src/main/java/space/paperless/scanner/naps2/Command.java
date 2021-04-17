@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
 public class Command {
 	private static final Logger LOG = LoggerFactory.getLogger(Command.class);
 
-	private ProcessBuilder processBuilder;
+	private final ProcessBuilder processBuilder;
 
 	public Command(File executable) {
 		super();

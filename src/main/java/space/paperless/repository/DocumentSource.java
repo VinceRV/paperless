@@ -5,8 +5,8 @@ import java.io.File;
 import space.paperless.domain.Document;
 
 public class DocumentSource {
-	private File documentFile;
-	private Document document;
+	private final File documentFile;
+	private final Document document;
 
 	public DocumentSource(File documentFile, Document document) {
 		super();

@@ -34,7 +34,7 @@ import space.paperless.repository.DocumentsRepository;
 public class DocumentController {
 
 	private final Map<String, DocumentsRepository> rootToRepository = new HashMap<>();
-	private DescriptionIndexer descriptionIndexer;
+	private final DescriptionIndexer descriptionIndexer;
 
 	@Autowired
 	public DocumentController(List<DocumentsRepository> filesRepositories, DescriptionIndexer descriptionIndexer) {

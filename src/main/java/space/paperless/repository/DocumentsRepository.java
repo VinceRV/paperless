@@ -8,11 +8,7 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import org.apache.commons.io.FileExistsException;
@@ -27,10 +23,10 @@ import space.paperless.repository.RepositoryIndex.DocumentIndexer;
 
 public class DocumentsRepository {
 
-	private RepositoryId repositoryId;
-	private File root;
-	private PDFMetadata pdfMetadata;
-	private RepositoryIndex repositoryIndex;
+	private final RepositoryId repositoryId;
+	private final File root;
+	private final PDFMetadata pdfMetadata;
+	private final RepositoryIndex repositoryIndex;
 
 	public DocumentsRepository(RepositoryId repositoryId, File root, PDFMetadata pdfMetadata,
 			RepositoryIndex repositoryIndex) {
@@ -51,7 +47,7 @@ public class DocumentsRepository {
 	}
 
 	public List<String> getFoldersList(String path) {
-		return Arrays.stream(getFolder(path).listFiles(File::isDirectory)).map(File::getName)
+		return Arrays.stream(Objects.requireNonNull(getFolder(path).listFiles(File::isDirectory))).map(File::getName)
 				.collect(Collectors.toList());
 	}
 
@@ -72,7 +68,7 @@ public class DocumentsRepository {
 	}
 
 	public List<Document> getDocuments(MultiValueMap<String, String> filters) throws IOException {
-		List<Document> documents = null;
+		List<Document> documents;
 
 		if (isEmpty(filters)) {
 			documents = getAllDocumentsList(new LinkedList<>(), "");
@@ -205,6 +201,7 @@ public class DocumentsRepository {
 	private File getDocumentFile(String documentId) {
 		String path = IdUtils.idToPath(repositoryId.getName(), documentId);
 
+		assert path != null;
 		return new File(root, path);
 	}
 

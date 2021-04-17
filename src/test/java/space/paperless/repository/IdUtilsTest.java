@@ -1,10 +1,8 @@
 package space.paperless.repository;
 
-import static org.junit.Assert.assertEquals;
-
 import org.junit.Test;
 
-import space.paperless.repository.IdUtils;
+import static org.junit.Assert.assertEquals;
 
 public class IdUtilsTest {
 

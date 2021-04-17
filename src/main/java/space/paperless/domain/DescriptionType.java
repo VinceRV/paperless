@@ -9,12 +9,12 @@ public enum DescriptionType {
 			"type", false, true, false), NOTES("notes", false, false, false), COMPLEMENT("complement", false, true,
 					false), THIRDPARTY("thirdparty", false, true, true), REFERENCE("reference", false, true, true);
 
-	private String name;
-	private boolean number;
-	private boolean indexed;
-	private boolean collection;
+	private final String name;
+	private final boolean number;
+	private final boolean indexed;
+	private final boolean collection;
 
-	private DescriptionType(String name, boolean number, boolean indexed, boolean collection) {
+	DescriptionType(String name, boolean number, boolean indexed, boolean collection) {
 		this.name = name;
 		this.number = number;
 		this.indexed = indexed;

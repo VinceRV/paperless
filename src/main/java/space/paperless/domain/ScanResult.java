@@ -4,8 +4,8 @@ import space.paperless.scanner.naps2.CommandResult;
 
 public class ScanResult {
 
-	private String fileName;
-	private CommandResult commandResult;
+	private final String fileName;
+	private final CommandResult commandResult;
 
 	public ScanResult(String fileName, CommandResult commandResult) {
 		super();

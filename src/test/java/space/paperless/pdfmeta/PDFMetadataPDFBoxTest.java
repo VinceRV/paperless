@@ -11,7 +11,7 @@ import org.junit.Test;
 
 public class PDFMetadataPDFBoxTest {
 
-	private PDFMetadataPDFBox pdfMetadata = new PDFMetadataPDFBox();
+	private final PDFMetadataPDFBox pdfMetadata = new PDFMetadataPDFBox();
 
 	@Test
 	public void readDescriptions_archive_descriptionsAreRead() throws IOException {

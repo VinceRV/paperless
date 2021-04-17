@@ -22,17 +22,17 @@ import space.paperless.domain.DescriptionIndex;
 @RequestMapping("/indexes")
 public class DescriptionIndexController {
 
-	@Autowired
-	private EntityLinks entityLinks;
-	private Map<String, DescriptionIndex> typeToIndex = new HashMap<>();
+	private final EntityLinks entityLinks;
+	private final Map<String, DescriptionIndex> typeToIndex = new HashMap<>();
 
 	@Autowired
-	public DescriptionIndexController(List<DescriptionIndex> indexes) {
+	public DescriptionIndexController(List<DescriptionIndex> indexes, EntityLinks entityLinks) {
 		super();
 
 		for (DescriptionIndex index : indexes) {
 			typeToIndex.put(index.getDescriptionType().getName(), index);
 		}
+		this.entityLinks = entityLinks;
 	}
 
 	@RequestMapping

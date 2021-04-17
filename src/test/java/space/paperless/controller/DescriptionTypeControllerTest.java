@@ -1,10 +1,5 @@
 package space.paperless.controller;
 
-import static io.restassured.module.mockmvc.RestAssuredMockMvc.given;
-import static org.hamcrest.CoreMatchers.hasItems;
-
-import java.util.Arrays;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +7,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
-
-import space.paperless.controller.DescriptionTypeController;
 import space.paperless.domain.DescriptionType;
+
+import java.util.Arrays;
+
+import static io.restassured.module.mockmvc.RestAssuredMockMvc.given;
+import static org.hamcrest.CoreMatchers.hasItems;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.MOCK)
@@ -28,6 +26,6 @@ public class DescriptionTypeControllerTest {
 	public void get_descriptionFields_fieldTypesAreReturned() {
 		given().standaloneSetup(controller).when().get("/descriptionTypes").then().statusCode(200).body("name",
 				hasItems(
-						Arrays.asList(DescriptionType.values()).stream().map(t -> t.getName()).toArray(String[]::new)));
+						Arrays.stream(DescriptionType.values()).map(DescriptionType::getName).toArray(String[]::new)));
 	}
 }
